@@ -1,0 +1,91 @@
+:root{
+  --card:#fff;
+  --text:#111827;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --accent:#3b82f6;
+  --shadow: 0 12px 30px rgba(17,24,39,.08);
+  --radius: 14px;
+}
+
+/* ریشه‌ی دراپ‌داون: مرجعِ position برای منو */
+.dd-wrap{
+  position: relative;              /* ← مهم */
+  display: grid;
+  gap: .45rem;
+  width: 100%;
+}
+
+/* لیبل اختیاری */
+.dd-label{ font-size:.85rem; color:var(--muted); font-weight:600; }
+
+/* دکمه */
+.dd-button{
+  display:flex; align-items:center; justify-content:space-between;
+  width:100%;
+  padding:.72rem .95rem;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:var(--card);
+  color:var(--text);
+  cursor:pointer; outline:0;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  transition: box-shadow .15s ease, border-color .15s ease, transform .05s ease;
+  position: relative;   /* برای مطمئن شدن از موقعیت × */
+}
+.dd-button:hover{ border-color:#d5dae1; box-shadow:0 4px 16px rgba(0,0,0,.06); }
+.dd-button:active{ transform: translateY(1px); }
+.dd-button:focus-visible{ box-shadow:0 0 0 3px rgba(59,130,246,.28); }
+.dd-button-text{ 
+  overflow:hidden; 
+  white-space:nowrap; 
+  text-overflow:ellipsis; 
+  font-weight:500; 
+  flex:1; 
+  text-align:left;
+  padding-right: 2rem; /* جا برای × و فلش */
+}
+.dd-caret{ margin-left:.6rem; transition: transform .15s ease; }
+.dd-caret.rotate{ transform: rotate(180deg); }
+
+/* دکمه پاک‌کردن داخل دکمه اصلی */
+.dd-clear{
+  position: absolute;
+  right: 1.8rem;       /* کنار فلش */
+  top: 50%;
+  transform: translateY(-50%);
+  display:flex; align-items:center; justify-content:center;
+  width:20px; height:20px;
+  font-weight:700; line-height:1; border-radius:999px;
+  border:1px solid var(--border); background: #fff;
+  color:#6b7280; cursor:pointer;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.dd-clear:hover{ background:#f3f4f6; color:#111827; border-color:#d1d5db; }
+
+/* منو — «روی» دکمه باز شود، نه اینکه هل بده */
+.dd-menu{
+  position: absolute;              /* ← مهم */
+  top: calc(100% + .38rem);        /* دقیقا زیر دکمه */
+  left: 0;
+  min-width: 100%;
+  z-index: 20;
+
+  padding:.35rem;
+  list-style:none; background:var(--card);
+  border:1px solid var(--border); border-radius:var(--radius);
+  box-shadow: var(--shadow);
+  max-height: 260px; overflow:auto; outline: none;
+  animation: dd-fade .12s ease;
+}
+@keyframes dd-fade{ from{opacity:0; transform: translateY(-4px)} to{opacity:1; transform: translateY(0)} }
+
+/* آیتم‌ها */
+.dd-item{
+  padding:.6rem .7rem; border-radius:10px; cursor:pointer;
+  display:flex; align-items:center; gap:.6rem;
+  transition: background-color .12s ease, color .12s ease;
+}
+.dd-item:hover, .dd-item.active{ background:#eef2ff; }
+.dd-item.selected{ font-weight:600; position: relative; }
+.dd-item.selected::after{ content:"✓"; font-size:.85rem; color:var(--accent); margin-inline-start:auto; }

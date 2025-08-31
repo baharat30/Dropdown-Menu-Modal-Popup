@@ -1,0 +1,88 @@
+:root{
+  --modal-bg: rgba(15, 23, 42, .45);
+  --panel: #fff;
+  --panel-border: #e7ebf0;
+  --text: #0f172a;
+  --radius: 16px;
+  --shadow-lg: 0 25px 60px rgba(2,6,23,.22);
+}
+
+/* بک‌دراپ */
+.modal-backdrop{
+  position: fixed;
+  inset: 0;
+  background: var(--modal-bg);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  padding: 24px;
+  animation: fade-in .12s ease;
+}
+@keyframes fade-in { from { opacity: 0 } to { opacity: 1 } }
+
+/* پنل */
+.modal-panel{
+  width: min(560px, 92vw);
+  max-height: 80vh;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  outline: none;
+}
+
+/* هِدِر */
+.modal-head{
+  display:flex;
+  align-items:center;          /* عمودی دقیقاً وسط */
+  justify-content:space-between;
+  gap: 10px;                   /* فاصله‌ی منطقی بین عنوان و ضربدر */
+  padding: 14px 16px;          /* کمی جمع‌وجورتر */
+  border-bottom: 1px solid var(--panel-border);
+}
+.modal-head h2{
+  margin:0;
+  font-size:1.1rem;
+  font-weight:600;
+  flex: 1;                     /* عنوان فضا را پر کند؛ ضربدر بچسبد به راست */
+}
+.modal-close {
+  width: 22px;          /* قطر دایره کوچک */
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;    /* دایره */
+  border: 1px solid var(--panel-border);
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;     /* ضربدر ریزتر */
+  line-height: 1;
+  color: #374151;        /* خاکستری تیره */
+  transition:  0.2s;
+}
+
+.modal-close:hover {
+  background: #f3f4f6;   /* موقع هاور کمی پررنگ‌تر */
+  color: #111827;
+}
+
+.modal-body{ padding: 16px 18px; }
+.modal-foot{
+  padding: 12px 18px;
+  border-top: 1px solid var(--panel-border);
+  display:flex; justify-content:flex-end; gap:8px;
+}
+
+/* از دکمه عمومی card استفاده می‌کنیم */
+.btn{
+  padding: .55rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: #0ea5e9; color: #fff;
+  cursor: pointer;
+}
+.btn:hover{ filter: brightness(0.95); }
