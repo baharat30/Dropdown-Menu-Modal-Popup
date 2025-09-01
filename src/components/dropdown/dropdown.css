@@ -8,18 +8,15 @@
   --radius: 14px;
 }
 
-/* ریشه‌ی دراپ‌داون: مرجعِ position برای منو */
 .dd-wrap{
-  position: relative;              /* ← مهم */
+  position: relative;
   display: grid;
   gap: .45rem;
   width: 100%;
 }
 
-/* لیبل اختیاری */
 .dd-label{ font-size:.85rem; color:var(--muted); font-weight:600; }
 
-/* دکمه */
 .dd-button{
   display:flex; align-items:center; justify-content:space-between;
   width:100%;
@@ -31,7 +28,7 @@
   cursor:pointer; outline:0;
   box-shadow: 0 1px 2px rgba(0,0,0,.04);
   transition: box-shadow .15s ease, border-color .15s ease, transform .05s ease;
-  position: relative;   /* برای مطمئن شدن از موقعیت × */
+  position: relative;
 }
 .dd-button:hover{ border-color:#d5dae1; box-shadow:0 4px 16px rgba(0,0,0,.06); }
 .dd-button:active{ transform: translateY(1px); }
@@ -43,15 +40,14 @@
   font-weight:500; 
   flex:1; 
   text-align:left;
-  padding-right: 2rem; /* جا برای × و فلش */
+  padding-right: 2rem;
 }
 .dd-caret{ margin-left:.6rem; transition: transform .15s ease; }
 .dd-caret.rotate{ transform: rotate(180deg); }
 
-/* دکمه پاک‌کردن داخل دکمه اصلی */
 .dd-clear{
   position: absolute;
-  right: 1.8rem;       /* کنار فلش */
+  right: 1.8rem;
   top: 50%;
   transform: translateY(-50%);
   display:flex; align-items:center; justify-content:center;
@@ -63,10 +59,9 @@
 }
 .dd-clear:hover{ background:#f3f4f6; color:#111827; border-color:#d1d5db; }
 
-/* منو — «روی» دکمه باز شود، نه اینکه هل بده */
 .dd-menu{
-  position: absolute;              /* ← مهم */
-  top: calc(100% + .38rem);        /* دقیقا زیر دکمه */
+  position: absolute;
+  top: calc(100% + .38rem);
   left: 0;
   min-width: 100%;
   z-index: 20;
@@ -80,7 +75,6 @@
 }
 @keyframes dd-fade{ from{opacity:0; transform: translateY(-4px)} to{opacity:1; transform: translateY(0)} }
 
-/* آیتم‌ها */
 .dd-item{
   padding:.6rem .7rem; border-radius:10px; cursor:pointer;
   display:flex; align-items:center; gap:.6rem;
@@ -89,3 +83,19 @@
 .dd-item:hover, .dd-item.active{ background:#eef2ff; }
 .dd-item.selected{ font-weight:600; position: relative; }
 .dd-item.selected::after{ content:"✓"; font-size:.85rem; color:var(--accent); margin-inline-start:auto; }
+
+
+@media (max-width: 640px){
+  .dd-button{ padding: .78rem .9rem; } 
+  .dd-menu{
+    min-width: unset;
+    width: min(92vw, 420px);
+    max-height: 50vh;      
+  }
+}
+
+
+@media (max-width: 360px){
+  .dd-button-text{ font-size: .95rem; }
+  .dd-item{ padding: .7rem .75rem; }
+}

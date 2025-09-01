@@ -7,7 +7,6 @@
   --shadow-lg: 0 25px 60px rgba(2,6,23,.22);
 }
 
-/* بک‌دراپ */
 .modal-backdrop{
   position: fixed;
   inset: 0;
@@ -20,7 +19,6 @@
 }
 @keyframes fade-in { from { opacity: 0 } to { opacity: 1 } }
 
-/* پنل */
 .modal-panel{
   width: min(560px, 92vw);
   max-height: 80vh;
@@ -34,39 +32,38 @@
   outline: none;
 }
 
-/* هِدِر */
 .modal-head{
   display:flex;
-  align-items:center;          /* عمودی دقیقاً وسط */
+  align-items:center;
   justify-content:space-between;
-  gap: 10px;                   /* فاصله‌ی منطقی بین عنوان و ضربدر */
-  padding: 14px 16px;          /* کمی جمع‌وجورتر */
+  gap: 10px;
+  padding: 14px 16px;
   border-bottom: 1px solid var(--panel-border);
 }
 .modal-head h2{
   margin:0;
   font-size:1.1rem;
   font-weight:600;
-  flex: 1;                     /* عنوان فضا را پر کند؛ ضربدر بچسبد به راست */
+  flex: 1;
 }
 .modal-close {
-  width: 22px;          /* قطر دایره کوچک */
+  width: 22px;
   height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;    /* دایره */
+  border-radius: 50%;
   border: 1px solid var(--panel-border);
   background: #fff;
   cursor: pointer;
-  font-size: 0.9rem;     /* ضربدر ریزتر */
+  font-size: 0.9rem;
   line-height: 1;
-  color: #374151;        /* خاکستری تیره */
-  transition:  0.2s;
+  color: #374151;
+  transition: 0.2s;
 }
 
 .modal-close:hover {
-  background: #f3f4f6;   /* موقع هاور کمی پررنگ‌تر */
+  background: #f3f4f6;
   color: #111827;
 }
 
@@ -77,7 +74,6 @@
   display:flex; justify-content:flex-end; gap:8px;
 }
 
-/* از دکمه عمومی card استفاده می‌کنیم */
 .btn{
   padding: .55rem 1rem;
   border-radius: 10px;

@@ -35,7 +35,6 @@ export default function App() {
         <button className="btn" onClick={() => setOpenModal(true)}>This is an example of a Modal.</button>
       </div>
 
-      {/* مودال */}
       <Modal
         open={openModal}
         title="Summary"

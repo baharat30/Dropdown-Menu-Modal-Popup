@@ -16,7 +16,7 @@ export function useOnClickOutside<T extends HTMLElement>(
     if (!enabled) return;
 
     const onPointerDown = (e: PointerEvent) => {
-      const el = (ref as { current: T | null }).current; // ← سازگار با هر دو نوع
+      const el = (ref as { current: T | null }).current;
       if (!el || el.contains(e.target as Node)) return;
       latest.current(e);
     };

@@ -13,10 +13,7 @@ html, body, #root{ height:100%; }
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-  background:
-    radial-gradient(60rem 30rem at -10% -10%, #eaf0ff 0, transparent 60%),
-    radial-gradient(50rem 30rem at 120% -20%, #f3f6ff 0, transparent 60%),
-    var(--bg);
+ background: #fff;
   color:var(--text);
 }
 
@@ -28,20 +25,16 @@ body{
   padding: 40px 16px;
 }
 
-
-/* ظرف صفحه؛ دقیقا وسط */
 .app-shell {
-  min-height: 100vh;              /* تمام ارتفاع */
-  display: flex;                  /* flex به جای grid */
-  justify-content: center;        /* افقی وسط */
-  align-items: center;            /* عمودی وسط */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;  
+  align-items: center; 
   padding: 40px 16px;
 }
 
-
-/* کارت */
 .card{
-  direction: ltr;             /* فقط همین بخش LTR بمونه */
+  direction: ltr;
   width:min(490px, 92vw);
   background:var(--card);
   border:1px solid var(--border);
@@ -52,24 +45,37 @@ body{
   margin-bottom: 120px;
 }
 
-/* عنوان */
 .card h1{
   margin:0 0 10px;
   font-size: clamp(22px, 3.6vw, 34px);
   line-height:1.15;
 }
 
-/* فاصله‌های عمودی */
 .stack{ display:grid; gap: 14px; }
 
-/* متن کم‌رنگ/وضعیت */
 .subtle{
   margin: 8px 0 0;
   color: var(--muted);
   font-size: .95rem;
 }
 
-/* --- نکته‌ها ---
-   1) .app-container و هر تعریف تکراری .card/.subtle حذف شد.
-   2) فقط .app-shell در JSX استفاده می‌شود.
-*/
+
+@media (max-width: 640px){
+  .app-shell{ padding: 24px 12px; }
+
+  .card{
+    width: 100%;
+    padding: 18px 16px;
+    border-radius: 16px;
+
+
+    transform: none;     
+    margin-bottom: 32px;  
+  }
+}
+
+
+@media (max-width: 360px){
+  .card{ padding: 16px 14px; }
+}
+

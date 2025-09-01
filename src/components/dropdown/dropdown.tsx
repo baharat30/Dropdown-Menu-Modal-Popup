@@ -9,14 +9,11 @@ type DropdownProps = {
   options: Option[];
   placeholder?: string;
 
-  /** حالت جدید: کامپوننت کنترلی */
   value?: Option | null;
   onChange?: (opt: Option | null) => void;
 
-  /** سازگاری با قبل: اگر فقط این را دادی، همچنان کار می‌کند */
   onSelect?: (opt: Option) => void;
 
-  /** نمایش دکمه پاک‌کردن در صورت انتخاب */
   clearable?: boolean;
 };
 
@@ -24,7 +21,7 @@ export default function Dropdown({
   label = "Menu",
   options,
   placeholder = "Select…",
-  value,                // اگر مقدار بدهی → کنترلی
+  value,
   onChange,
   onSelect,
   clearable = true,
@@ -32,10 +29,8 @@ export default function Dropdown({
   const [open, setOpen] = useState(false);
   const [activeIdx, setActiveIdx] = useState(-1);
 
-  // غیرکنترلی داخلی
   const [internalSelected, setInternalSelected] = useState<Option | null>(null);
 
-  // اگر value آمده → کنترلی؛ وگرنه از internal استفاده کن
   const isControlled = value !== undefined;
   const selected = isControlled ? value! : internalSelected;
 
@@ -45,7 +40,6 @@ export default function Dropdown({
 
   useOnClickOutside(wrapperRef, () => setOpen(false), open);
 
-  // بستن با ESC
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -58,7 +52,6 @@ export default function Dropdown({
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // وقتی باز شد فوکوس به لیست
   useEffect(() => {
     if (open) {
       setActiveIdx(0);
@@ -69,7 +62,7 @@ export default function Dropdown({
   const setSelected = (opt: Option | null) => {
     if (!isControlled) setInternalSelected(opt);
     onChange?.(opt ?? null);
-    if (opt) onSelect?.(opt); // سازگاری با API قبلی
+    if (opt) onSelect?.(opt);
   };
 
   const toggle = () => setOpen(o => !o);
@@ -81,13 +74,12 @@ export default function Dropdown({
   };
 
   const clear = (e?: React.MouseEvent) => {
-    e?.stopPropagation(); // نذار دکمه باز/بسته شود
+    e?.stopPropagation();
     setSelected(null);
     setOpen(false);
     buttonRef.current?.focus();
   };
 
-  // ناوبری با کیبورد داخل منو
   const onListKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
     if (!open) return;
     if (e.key === "ArrowDown") {
@@ -100,7 +92,6 @@ export default function Dropdown({
       e.preventDefault();
       if (activeIdx >= 0) choose(options[activeIdx]);
     } else if (e.key === "Backspace" && clearable && selected) {
-      // پاک‌کردن سریع با Backspace
       e.preventDefault();
       clear();
     }
@@ -122,7 +113,6 @@ export default function Dropdown({
           {selected ? selected.label : placeholder}
         </span>
 
-        {/* دکمه پاک‌کردن؛ فقط وقتی انتخاب شده و clearable */}
         {clearable && selected && (
           <span
             className="dd-clear"
@@ -160,7 +150,6 @@ export default function Dropdown({
             </li>
           ))}
 
-          {/* آیتم پاک‌کردن داخل منو هم (اختیاری) */}
           {clearable && selected && (
             <li className="dd-item" onClick={() => clear()}>
               Clear selection
